@@ -60,11 +60,6 @@ Implemented in [`predict.py`](predict.py):
 - Scale features and predict label (`0 → Real`, `1 → Fake`).
 - If available, compute `predict_proba` for confidence % and include in the output string.
 
-## Web App Flow
-Implemented in [`main.py`](main.py):
-- `GET /`: Render `index.html` to upload a `.wav` file.
-- `POST /result`: Validate file, save to `uploads/`, call `analyze_audio()`, render result.
-- Handles errors (missing file, invalid type) using `flash()` messages.
 
 ## Usage
 ### Install Dependencies (Windows PowerShell)
@@ -84,11 +79,7 @@ python predict.py
 ```
 - Enter the full path to a `.wav` file when prompted.
 
-### Run Web App
-```powershell
-python main.py
-```
-- Open http://127.0.0.1:5000 and upload a `.wav` file.
+
 
 ## File-by-File Summary
 - [`train.py`](train.py)
@@ -98,8 +89,6 @@ python main.py
   - `main()`: Prepare datasets from `dataset/real` and `dataset/fake`, stack and call `train_model`.
 - [`predict.py`](predict.py)
   - `analyze_audio(input_audio_path)`: Load artifacts, extract + scale features, predict label and confidence, return text result.
-- [`main.py`](main.py)
-  - Flask routes for upload and result display; stores uploads; calls `analyze_audio()`.
 
 ## Tips
 - Data diversity matters: add real samples from different mics, languages, and environments, plus varied AI voices.
